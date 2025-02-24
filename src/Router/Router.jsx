@@ -7,6 +7,8 @@ import Home from "../Pages/Home";
 import ShowNews from "../Pages/ShowNews";
 import Login from "../Components/Login";
 import Registration from "../Components/Registration";
+import Details from "../Pages/Details";
+import PrivateRouter from "./PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -30,10 +32,21 @@ const router = createBrowserRouter([
                 `https://openapi.programming-hero.com/api/news/category/${params.category_id}`
               );
               const data = await response.json();
-              return data; 
+              return data;
             },
           },
         ],
+      },
+      {
+        path: "/details/:id",
+        element: <PrivateRouter><Details></Details></PrivateRouter>,
+        loader: async ({ params }) => {
+          const response = await fetch(
+            `https://openapi.programming-hero.com/api/news/${params.id}`
+          );
+          const data = await response.json();
+          return data;
+        },
       },
       {
         path: "/About",
@@ -44,12 +57,12 @@ const router = createBrowserRouter([
         element: <Career />,
       },
       {
-        path:"/login",
-        element:<Login></Login>
+        path: "/login",
+        element: <Login></Login>
       },
       {
-        path:"/registration",
-        element:<Registration></Registration>
+        path: "/registration",
+        element: <Registration></Registration>
       }
     ],
   },

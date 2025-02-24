@@ -2,7 +2,7 @@ import { CiBookmark } from "react-icons/ci";
 import { IoShareSocial } from "react-icons/io5";
 import { Link } from "react-router-dom";
 const Bang = ({ category }) => {
-    const { author, title, image_url ,details} = category
+    const { author, title, image_url ,details, _id} = category
     return (
         <div>
             <div className="card rounded-[5px] shadow-sm">
@@ -30,7 +30,8 @@ const Bang = ({ category }) => {
                         <img className="rounded-none"
                             src={image_url} />
                     </figure><br />
-                    <p>{details.slice(0,200)}...<Link className="underline">see more</Link></p>
+                    <p>{details.slice(0,200)}...<Link 
+                    to={`/details/${_id}`} className="underline">see more</Link></p>
                 </div>
 
             </div>
